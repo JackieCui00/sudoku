@@ -2,4 +2,3 @@ sudoku
 unittest
 compile_commands.json
 .cache
-example*
