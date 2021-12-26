@@ -349,6 +349,16 @@ void IterateSudokuSolver::interactive(Sudoku* sudoku)
                 }
             }
         }
+        else
+        {
+            std::cout << "Avaiable commands:" << std::endl
+                        << "\tcontinue|c" << std::endl
+                        << "\tquery|q <row> <column>" << std::endl
+                        << "\trow|r <row>" << std::endl
+                        << "\tcolumn|c <column>" << std::endl
+                        << "\tsquare|s <square>" << std::endl
+                        << "\tall|a" << std::endl;
+        }
     }
 
     exit(0);
@@ -412,7 +422,7 @@ void IterateSudokuSolver::Solve(Sudoku* sudoku)
 
         if (sudoku->IsAllSet())
         {
-            std::cout << "Done! Iterate " << i << "Times" << std::endl;
+            std::cout << "Done! Iterate " << i << " Times" << std::endl;
             break;
         }
 
@@ -421,24 +431,4 @@ void IterateSudokuSolver::Solve(Sudoku* sudoku)
             cell->SetColor(Color::RED);
         }
     }
-}
-
-int main(int argc, char* argv[])
-{
-    RandomGenerator.seed(std::time(nullptr));
-    // RandomSudokuGenerator generator;
-    // std::cout << "Random:\n" << generator.Generate()->ToString() << std::endl;
-
-    for (int i = 1; i < argc; ++i)
-    {
-        InputSudokuGenerator inputGenerator(argv[i]);
-        auto sudoku = inputGenerator.Generate();
-        std::cout << "Input: " << argv[i] << "\n"
-            << sudoku->ToString() << std::endl;
-
-        IterateSudokuSolver solver;
-        solver.Solve(sudoku.get());
-    }
-
-    return 0;
 }
